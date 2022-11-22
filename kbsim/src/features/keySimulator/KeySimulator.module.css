@@ -23,9 +23,8 @@
   border-color: rgb(0, 0, 0);
   border-radius: 10px;
   box-sizing: border-box;
-  box-shadow:  5px 10px 30px 10px rgb(0, 255, 234);
-             
-           
+  box-shadow: 5px 5px 20px 5px rgb(255, 255, 255);
+
   background-clip: padding-box;
   min-width: 56px;
   min-height: 56px;
@@ -33,12 +32,9 @@
   display: flex;
 }
 
-
-
 .keyrow {
   display: flex;
   font-size: 12px;
-  
 }
 
 .value {
@@ -47,7 +43,6 @@
   padding-right: 16px;
   margin-top: 2px;
   font-family: 'Courier New', Courier, monospace;
-  
 }
 
 .button {
@@ -61,10 +56,9 @@
   color: rgb(112, 76, 182);
   padding-bottom: 4px;
   cursor: pointer;
-  background-color: rgba(255, 0, 0,);
+  background-color: rgba(255, 0, 0);
   border-radius: 2px;
   transition: all 0.15s;
- 
 }
 
 .textarea {
@@ -74,18 +68,15 @@
   height: 256px;
   margin-right: 8px;
   resize: none;
- 
 }
 
 .button:hover,
 .button:focus {
   border: 2px solid rgba(28, 3, 252);
-  
 }
 
 .button:active {
   background-color: rgba(255, 0, 0);
-  
 }
 
 .selectcontainer {
@@ -236,8 +227,7 @@
   max-width: 80vw;
 }
 
-
-.mechsw{
+.mechsw {
   padding-bottom: 20px;
   padding-right: 10px;
 }

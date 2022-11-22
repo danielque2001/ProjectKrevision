@@ -45,12 +45,21 @@ function KeySimulator({ currentTheme, theme }) {
   const [presetToCart, setPresetToCart] = useState(61);
   const [boneToCart, setBoneToCart] = useState(31);
 
+  //change default value for a border color
+  const [caseLight, setCaseLight] = useState('black');
+
+  //change default value for a glow color
+  const [caseGlowLight, setCaseGlowLight] = useState(
+    '1px 1px 3px 2px rgb(0, 0, 0)'
+  );
+
   const dispatch = useDispatch();
 
   const keycontainer = useRef();
   const switchselect = useRef();
   const layoutselect = useRef();
   const caseselect = useRef();
+  const caselight = useRef();
   const casebone = useRef();
   const addtocart = useRef();
   const gotocart = useRef();
@@ -88,7 +97,6 @@ function KeySimulator({ currentTheme, theme }) {
     });
 
     setSwitchToCart(keySounds[e.target.value].key);
-   
   };
 
   const handleBoneChange = (e) => {
@@ -113,7 +121,6 @@ function KeySimulator({ currentTheme, theme }) {
   const handleAddToCart = (e) => {
     window.location.href =
       'https://www.projectkecommerce.store/add_cart_simulation.php?switch=' +
-     
       switchToCart +
       '&preset=' +
       presetToCart +
@@ -126,13 +133,10 @@ function KeySimulator({ currentTheme, theme }) {
   };
 
   const toggleMute = () => {
-   
     setMute(!muted);
   };
 
- 
   const handleKeyDown = (e) => {
-    
     if (
       e.keyCode === 18 ||
       e.keyCode === 112 ||
@@ -215,6 +219,50 @@ function KeySimulator({ currentTheme, theme }) {
     }
   };
 
+  // change lighting color
+  const handleLightingChange = () => {
+    if (caselight.current.value === 'red') {
+      setCaseLight('red');
+      setCaseGlowLight('1px 1px 3px 2px rgb(255, 99, 71)');
+    }
+
+    if (caselight.current.value === 'green') {
+      setCaseLight('green');
+      setCaseGlowLight('1px 1px 3px 2px rgb(60, 179, 113)');
+    }
+
+    if (caselight.current.value === 'blue') {
+      setCaseLight('blue');
+      setCaseGlowLight('1px 1px 3px 2px rgb(0, 0, 255)');
+    }
+
+    if (caselight.current.value === 'pink') {
+      setCaseLight('pink');
+      setCaseGlowLight('1px 1px 3px 2px rgb(238, 130, 238)');
+    }
+
+    if (caselight.current.value === 'skyblue') {
+      setCaseLight('skyblue');
+      setCaseGlowLight('1px 1px 3px 2px rgb(135, 206, 235)');
+    }
+
+    if (caselight.current.value === 'yellow') {
+      setCaseLight('yellow');
+      setCaseGlowLight('1px 1px 3px 2px rgb(255, 240, 0)');
+    }
+
+    if (caselight.current.value === 'black') {
+      setCaseLight('black');
+      setCaseGlowLight('1px 1px 3px 2px rgb(0, 0, 0)');
+    }
+
+    // add condition to added color
+    // if (caselight.current.value === 'color') {
+    //   setCaseLight('color');
+    //   setCaseGlowLight('1px 1px 3px 2px rgb(0, 0, 0)');
+    // }
+  };
+
   // called when an individual key detects a mousedown event
   const handleKeyMouseDown = (primaryLegend) => {
     // console.log(keyCodeOf(primaryLegend) + " " + x + " " + y);
@@ -290,7 +338,7 @@ function KeySimulator({ currentTheme, theme }) {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={keycontainer}
-      tabIndex="0"
+      tabIndex='0'
       style={{
         backgroundColor: theme.background,
       }}
@@ -316,28 +364,30 @@ function KeySimulator({ currentTheme, theme }) {
         >
           <div className={styles.selectarea}>
             <div className={styles.selectcol}>
-            <div className={styles.mechsw}
-            style={{
-              backgroundColor: theme.background,
-              color: theme.dropText,
-            }}>
-        <p><b>Select Mechanical switches </b> </p>
-      </div>
-              <select
-                className={`${styles.dropdown} ${
-                  currentTheme == 'light' ? styles.light : styles.dark
-                }`}
-                
-                ref={switchselect}
-                aria-label="Switch Type"
-                onChange={handleSwitchChange}
-                defaultValue="0"
+              <div
+                className={styles.mechsw}
                 style={{
                   backgroundColor: theme.background,
                   color: theme.dropText,
                 }}
               >
-                
+                <p>
+                  <b>Select Mechanical switches </b>{' '}
+                </p>
+              </div>
+              <select
+                className={`${styles.dropdown} ${
+                  currentTheme == 'light' ? styles.light : styles.dark
+                }`}
+                ref={switchselect}
+                aria-label='Switch Type'
+                onChange={handleSwitchChange}
+                defaultValue='0'
+                style={{
+                  backgroundColor: theme.background,
+                  color: theme.dropText,
+                }}
+              >
                 {keySounds.map((sound, index) => {
                   return (
                     <option value={index} key={sound.key}>
@@ -348,20 +398,24 @@ function KeySimulator({ currentTheme, theme }) {
               </select>
             </div>
             <div className={styles.selectcol}>
-            <div className={styles.mechsw}
-            style={{
-              backgroundColor: theme.background,
-              color: theme.dropText,
-            }}>
-        <p><b>Select Layout </b> </p>
-      </div>
+              <div
+                className={styles.mechsw}
+                style={{
+                  backgroundColor: theme.background,
+                  color: theme.dropText,
+                }}
+              >
+                <p>
+                  <b>Select Layout </b>{' '}
+                </p>
+              </div>
               <select
                 className={`${styles.dropdown} ${
                   currentTheme == 'light' ? styles.light : styles.dark
                 }`}
                 ref={casebone}
-                aria-label="Case Bone"
-                defaultValue="gray"
+                aria-label='Case Bone'
+                defaultValue='gray'
                 onChange={handleBoneChange}
                 style={{
                   backgroundColor: theme.background,
@@ -378,21 +432,25 @@ function KeySimulator({ currentTheme, theme }) {
               </select>
             </div>
             <div className={styles.selectcol}>
-            <div className={styles.mechsw}
-             style={{
-              backgroundColor: theme.background,
-              color: theme.dropText,
-            }}>
-        <p><b>Select Keycaps</b> </p>
-      </div>
+              <div
+                className={styles.mechsw}
+                style={{
+                  backgroundColor: theme.background,
+                  color: theme.dropText,
+                }}
+              >
+                <p>
+                  <b>Select Keycaps</b>{' '}
+                </p>
+              </div>
               <select
                 className={`${styles.dropdown} ${
                   currentTheme == 'light' ? styles.light : styles.dark
                 }`}
                 ref={layoutselect}
-                aria-label="Keyboard Layout"
+                aria-label='Keyboard Layout'
                 onChange={handleLayoutChange}
-                defaultValue="0"
+                defaultValue='0'
                 style={{
                   backgroundColor: theme.background,
                   color: theme.dropText,
@@ -409,24 +467,27 @@ function KeySimulator({ currentTheme, theme }) {
                   })}
               </select>
             </div>
-            
+
             <div className={styles.selectcol}>
-            <div className={styles.mechsw}
-            style={{
-            backgroundColor: theme.background,
-            color: theme.dropText,
-          }}>
-        <p><b>Select Color</b></p>
-        
-      </div>
+              <div
+                className={styles.mechsw}
+                style={{
+                  backgroundColor: theme.background,
+                  color: theme.dropText,
+                }}
+              >
+                <p>
+                  <b>Select Color</b>
+                </p>
+              </div>
               <select
                 className={`${styles.dropdown} ${
                   currentTheme == 'light' ? styles.light : styles.dark
                 }`}
                 ref={caseselect}
-                aria-label="Case Color"
+                aria-label='Case Color'
                 onChange={handleCaseChange}
-                defaultValue="gray"
+                defaultValue='gray'
                 style={{
                   backgroundColor: theme.background,
                   color: theme.dropText,
@@ -442,14 +503,63 @@ function KeySimulator({ currentTheme, theme }) {
               </select>
             </div>
             <div className={styles.selectcol}>
+              <div
+                className={styles.mechsw}
+                style={{
+                  backgroundColor: theme.background,
+                  color: theme.dropText,
+                }}
+              >
+                <p>
+                  <b>Select Color Lightings</b>
+                </p>
+              </div>
+
+              <select
+                className={`${styles.dropdown} ${
+                  currentTheme == 'light' ? styles.light : styles.dark
+                }`}
+                ref={caselight}
+                aria-label='Case Lighting'
+                onChange={handleLightingChange}
+                defaultValue='black'
+                style={{
+                  backgroundColor: theme.background,
+                  color: theme.dropText,
+                }}
+              >
+                <option value='black'>Black</option>
+                <option value='red'>Red</option>
+                <option value='green'>Green</option>
+                <option value='blue'>Blue</option>
+                <option value='pink'>Pink</option>
+                <option value='skyblue'>Skyblue</option>
+                <option value='yellow'>Yellow</option>
+                {/* ifyou want to add collor */}
+              </select>
+            </div>
+
+            <div
+              className={styles.mutecol}
+              style={{
+                color: theme.text,
+              }}
+            >
+              <label className={styles.mutebox}>
+                <span className={styles.checkMark}></span>
+              </label>
+            </div>
+          </div>
+          <center>
+            <div className={styles.selectcol}>
               <button
                 className={`${styles.btn} ${
                   currentTheme == 'light' ? styles.light : styles.dark
                 }`}
                 ref={addtocart}
-                aria-label="Add Cart"
+                aria-label='Add Cart'
                 onClick={handleAddToCart}
-                defaultValue="gray"
+                defaultValue='gray'
                 style={{
                   backgroundColor: theme.background,
                   color: theme.dropText,
@@ -464,9 +574,9 @@ function KeySimulator({ currentTheme, theme }) {
                   currentTheme == 'light' ? styles.light : styles.dark
                 }`}
                 ref={gotocart}
-                aria-label="Go Cart"
+                aria-label='Go Cart'
                 onClick={handleGoToCart}
-                defaultValue="gray"
+                defaultValue='gray'
                 style={{
                   backgroundColor: theme.background,
                   color: theme.dropText,
@@ -475,18 +585,7 @@ function KeySimulator({ currentTheme, theme }) {
                 Go to Cart
               </button>
             </div>
-
-            <div
-              className={styles.mutecol}
-              style={{
-                color: theme.text,
-              }}
-            >
-              <label className={styles.mutebox}>
-                <span className={styles.checkMark}></span>
-              </label>
-            </div>
-          </div>
+          </center>
         </div>
         <div className={styles.keyboard} style={keyboardStyle}>
           {layout.map((row, index) => {
@@ -504,7 +603,8 @@ function KeySimulator({ currentTheme, theme }) {
                       x={key.x}
                       y={key.y}
                       keytopcolor={key.keytopcolor}
-                      keybordercolor={key.keybordercolor}
+                      keybordercolor={caseLight}
+                      keyborlight={caseGlowLight}
                       textcolor={key.textcolor}
                       pressed={key.pressed}
                       mouseDown={handleKeyMouseDown}

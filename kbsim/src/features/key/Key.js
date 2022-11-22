@@ -1,12 +1,35 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './Key.module.css';
 
 // keysize must be divisble by 9
 const keysize = 54;
 
-const Key = ({ className, legend, sublegend, width, height, x, y, keytopcolor, keybordercolor, textcolor, pressed, mouseDown, mouseUp }) => (
-  <div className={styles.keycap} onMouseDown={() => { mouseDown(className) }} onMouseUp={() => { mouseUp(className) }}>
+const Key = ({
+  className,
+  legend,
+  sublegend,
+  width,
+  height,
+  x,
+  y,
+  keytopcolor,
+  keybordercolor,
+  keyborlight,
+  textcolor,
+  pressed,
+  mouseDown,
+  mouseUp,
+}) => (
+  <div
+    className={styles.keycap}
+    onMouseDown={() => {
+      mouseDown(className);
+    }}
+    onMouseUp={() => {
+      mouseUp(className);
+    }}
+  >
     <div
       className={styles.keyborder}
       style={{
@@ -15,6 +38,7 @@ const Key = ({ className, legend, sublegend, width, height, x, y, keytopcolor, k
         width: width * keysize,
         height: height * keysize,
         backgroundColor: keybordercolor,
+        boxShadow: keyborlight,
       }}
     />
     <div
@@ -22,8 +46,8 @@ const Key = ({ className, legend, sublegend, width, height, x, y, keytopcolor, k
       style={{
         left: x * keysize + keysize / 9,
         top: y * keysize + keysize / 18,
-        width: width * keysize - keysize * 2 / 9,
-        height: height * keysize - keysize * 2 / 9,
+        width: width * keysize - (keysize * 2) / 9,
+        height: height * keysize - (keysize * 2) / 9,
         backgroundColor: pressed ? keybordercolor : keytopcolor,
       }}
     />
@@ -32,47 +56,49 @@ const Key = ({ className, legend, sublegend, width, height, x, y, keytopcolor, k
       style={{
         left: x * keysize + keysize / 9,
         top: y * keysize + keysize / 18,
-        width: width * keysize - keysize * 2 / 9,
-        height: height * keysize - keysize * 2 / 9,
+        width: width * keysize - (keysize * 2) / 9,
+        height: height * keysize - (keysize * 2) / 9,
       }}
     >
       <div
         className={styles.keylegend}
         style={{
-          width: width * keysize - keysize * 3 / 9,
-          maxWidth: width * keysize - keysize * 3 / 9,
-          height: height * keysize - keysize * 3 / 9,
+          width: width * keysize - (keysize * 3) / 9,
+          maxWidth: width * keysize - (keysize * 3) / 9,
+          height: height * keysize - (keysize * 3) / 9,
         }}
       >
         <div
           style={{
-            width: width * keysize - keysize * 3 / 9,
-            height: height * keysize - keysize * 3 / 9,
+            width: width * keysize - (keysize * 3) / 9,
+            height: height * keysize - (keysize * 3) / 9,
             color: textcolor,
-          }}>
+          }}
+        >
           {legend}
         </div>
       </div>
       <div
         className={styles.keysublegend}
         style={{
-          width: width * keysize - keysize * 3 / 9,
-          height: height * keysize - keysize * 3 / 9,
+          width: width * keysize - (keysize * 3) / 9,
+          height: height * keysize - (keysize * 3) / 9,
           color: textcolor,
         }}
       >
         <div
           style={{
-            width: width * keysize - keysize * 3 / 9,
-            maxWidth: width * keysize - keysize * 3 / 9,
-            height: height * keysize - keysize * 3 / 9,
-          }}>
+            width: width * keysize - (keysize * 3) / 9,
+            maxWidth: width * keysize - (keysize * 3) / 9,
+            height: height * keysize - (keysize * 3) / 9,
+          }}
+        >
           {sublegend}
         </div>
       </div>
     </div>
   </div>
-)
+);
 
 Key.propTypes = {
   className: PropTypes.string.isRequired,
@@ -88,6 +114,6 @@ Key.propTypes = {
   pressed: PropTypes.bool.isRequired,
   mouseDown: PropTypes.func.isRequired,
   mouseUp: PropTypes.func.isRequired,
-}
+};
 
-export default Key
+export default Key;
