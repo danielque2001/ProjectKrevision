@@ -1,0 +1,52 @@
+.keycap,
+.keycap div {
+  position: absolute;
+  box-sizing: border-box;
+  background-clip: border-box;
+}
+
+.keyborder {
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0);
+  border-radius: 5px;
+ 
+  box-shadow: 1px 1px 3px 2px rgb(6, 211, 238), 
+              1px 1px 3px 2px rgb(1, 46, 247),
+              1px 2px 10px 2px rgb(218, 1, 247);
+}
+
+.keytop {
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(2, 2, 2, 0.1);
+  background-color: #f50707;
+  border-radius: 3px;
+  
+}
+
+
+.keylegends {
+  padding: 3px;
+  font-size: 13px !important;
+  line-height: 1em;
+}
+
+.keylegend > div {
+  text-align: left;
+  vertical-align: top;
+  display: table-cell;
+  position: static !important;
+}
+
+.keysublegend > div {
+  text-align: left;
+  vertical-align: bottom;
+  display: table-cell;
+  position: static !important;
+}
+
+.keypressed {
+  display: none;
+ 
+}
